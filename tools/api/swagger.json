@@ -1,0 +1,538 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "Nectar App"
+  },
+  "host": "localhost:3001",
+  "basePath": "/",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/products": {
+      "get": {
+        "description": "Returns all products",
+        "operationId": "get_all_products",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/product"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      }
+    },
+    "/product": {
+      "post": {
+        "description": "Add a Product to the Product List",
+        "operationId": "add_product",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/product"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/product"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "Returns a product",
+        "operationId": "get_product",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Returns a product",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/product"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes a product",
+        "operationId": "delete_product",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Deletes a product",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/product"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      }
+    },
+    "/stockist": {
+      "post": {
+        "description": "Add a Stockist to the Stockist Lists",
+        "operationId": "add_stockists",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/stockist"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/stockist"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "Returns a stockist",
+        "operationId": "get_stockist",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Returns a stockist",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/stockist"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes a stockist",
+        "operationId": "delete_stockist",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Deletes a stockist",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/stockist"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      }
+    },
+    "/stockist/{name}": {
+      "get": {
+        "description": "Returns the stockist with supplied name",
+        "operationId": "get_stockist_by_name",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Returns the stockist",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/stockist"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      }
+    },
+    "/allStockists": {
+      "get": {
+        "description": "Returns all stockists",
+        "operationId": "get_all_stockists",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/stockist"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      }
+    },
+    "/contacts": {
+      "post": {
+        "description": "Add a contact to the Stockist Lists",
+        "operationId": "add_contact",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contact"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/contact"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "Returns a contact",
+        "operationId": "get_contact",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Returns a contact",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/contact"
+            }
+          },
+          "401": {
+            "description": "No contacts matching that name"
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes a contact",
+        "operationId": "delete_contact",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Deletes a contact",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/contact"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      }
+    },
+    "/socialMedia": {
+      "post": {
+        "description": "Add an social_media to the Stockist Lists",
+        "operationId": "add_social_media",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/social_media"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/social_media"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "Returns a social_media item",
+        "operationId": "get_social_media",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Returns a social_media item",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/social_media"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes a social_media item",
+        "operationId": "delete_social_media",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Deletes a social_media item",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/social_media"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "stockist": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "example": "123 Test View Road, Auckland",
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "name": {
+          "example": "Test View SuperMarket",
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 50
+        },
+        "location": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number"
+            },
+            "long": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "product": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "example": "Peach-Tea",
+          "type": "string"
+        },
+        "title": {
+          "example": "Nectars Sweet Peach Tea",
+          "type": "string"
+        },
+        "price": {
+          "example": 2.3,
+          "type": "integer"
+        }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "phone": {
+          "example": "092925555",
+          "type": "number"
+        },
+        "mobile": {
+          "example": "0212925555",
+          "type": "number"
+        },
+        "email": {
+          "example": "test@email.com",
+          "type": "string"
+        },
+        "address": {
+          "example": "123 Test View Road, Auckland",
+          "type": "string"
+        }
+      }
+    },
+    "social_media": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "example": "Facebook",
+          "type": "string"
+        },
+        "link": {
+          "example": "https://www.facebook.com/TestTag-729569190470643/?ref=br_rs",
+          "type": "string"
+        }
+      }
+    },
+    "error_response": {
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

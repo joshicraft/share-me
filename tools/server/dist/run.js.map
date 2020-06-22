@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/run.js"],"names":["start"],"mappings":";;AAAA;;;;;;AAEA,qBAAMA,KAAN","file":"run.js","sourcesContent":["import app from './app'\r\n\r\napp().start()\r\n"]}

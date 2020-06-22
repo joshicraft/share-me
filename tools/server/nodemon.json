@@ -1,0 +1,8 @@
+{
+  "ignore": [
+    "dist"
+  ],
+  "events": {
+    "exit": "npm run build"
+  }
+}

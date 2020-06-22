@@ -1,0 +1,154 @@
+---
+swagger: "2.0"
+info:
+  description: "This is the manage the Shares api\
+    \ services."
+  version: "1.0.0"
+  title: "ToolBox"
+  contact:
+    email: "josh@icraft.co.nz"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+tags:
+- name: "Share"
+  description: "Share interface to house admin services"
+schemes:
+- "https"
+- "http"
+paths:
+  /results:
+    get:
+      description: "Returns all results"
+      operationId: "get_all_results"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/result"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+      x-swagger-router-controller: "Default"
+  /result:
+    get:
+      tags:
+      - "results"
+      summary: "Get an result"
+      description: ""
+      operationId: "get_result"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "results object that needs to be retrieved from the toolbox"
+        required: true
+        schema:
+          $ref: "#/definitions/result"
+      responses:
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "result not found"
+      x-swagger-router-controller: "result"
+    post:
+      tags:
+      - "results"
+      summary: "Add a results to the interface"
+      description: ""
+      operationId: "add_result"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "results object that needs to be added to the interface"
+        required: true
+        schema:
+          $ref: "#/definitions/result"
+      responses:
+        405:
+          description: "Invalid input"
+      x-swagger-router-controller: "result"
+    put:
+      tags:
+      - "results"
+      summary: "Update an results"
+      description: ""
+      operationId: "update_result"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "results object that needs to be added to the interface"
+        required: true
+        schema:
+          $ref: "#/definitions/result"
+      responses:
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "result not found"
+        405:
+          description: "Validation exception"
+      x-swagger-router-controller: "result"
+definitions:
+  result:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "integer"
+      name:
+        type: "string"
+      attributes:
+        $ref: "#/definitions/result_attributes"
+    example:
+      name: "name"
+      attributes:
+        price: 6
+        name: "name"
+        state:
+          active: true
+      id: 0
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "integer"
+      type:
+        type: "string"
+      message:
+        type: "string"
+  result_attributes_state:
+    properties:
+      active:
+        type: "boolean"
+    example:
+      active: true
+  result_attributes:
+    properties:
+      name:
+        type: "string"
+      price:
+        type: "integer"
+      state:
+        $ref: "#/definitions/result_attributes_state"
+    example:
+      price: 6
+      name: "name"
+      state:
+        active: true
